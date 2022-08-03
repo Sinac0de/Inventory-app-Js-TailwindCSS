@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="bg-slate-800 h-screen w-screen">
+    <div class="bg-slate-800 min-h-screen">
         <!-- appbar -->
         <div class="h-12 flex justify-center items-center gap-x-4 bg-slate-700 mb-5">
             <h1 class="text-xl font-bold text-slate-300">Inventory App with Tailwind & JS</h1>
@@ -21,7 +21,7 @@
             <!-- category form -->
             <div>
                 <h2 class="text-xl text-slate-400 font-bold mb-2">Add New Category</h2>
-                <form class="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4">
+                <form class="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4 mb-6">
                     <div>
                         <label for="category-title" class="block mb-1 text-slate-400">Title:</label>
                         <input type="text" name="category-title" id="category-title"
@@ -41,9 +41,9 @@
                 </form>
             </div>
             <!-- product form -->
-            <div class="mb-5">
+            <div>
                 <h2 class="text-xl text-slate-400 font-bold mb-2">Add New Product</h2>
-                <form class="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4">
+                <form class="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4 mb-6">
                     <div>
                         <label for="product-title" class="block mb-1 text-slate-400">Product title:</label>
                         <input type="text" name="product-title" id="product-title"
@@ -72,6 +72,21 @@
                             Product</button>
                     </div>
                 </form>
+
+                <!-- Product list -->
+                <h2 class="text-xl text-slate-400 font-bold mb-2">Product list</h2>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400 ">hello</span>
+                    <div class="flex items-center gap-x-3">
+                        <span class="text-slate-400">date</span>
+                        <span
+                            class="block text-slate-400 border border-slate-400 py-0.5 px-3 rounded-2xl text-sm">frontend</span>
+                        <span
+                            class="flex items-center justify-center w-7 h-7 bg-slate-500 rounded-full border border-2 border-slate-400 text-slate-300">8</span>
+                        <button class="text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl">delete</button>
+                    </div>
+                </div>
+                <div class="h-20"></div>
             </div>
 
         </div>
