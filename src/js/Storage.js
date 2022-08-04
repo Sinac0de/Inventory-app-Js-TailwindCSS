@@ -38,7 +38,6 @@ const categories = [
 
 class Storage {
     //add new category
-    //save category
     //getAllCategories
 
     static getAllCategories() {
@@ -51,6 +50,24 @@ class Storage {
         return sortedCategories;
     }
 
+    //save category
+    static saveCategory(categoryToSave) {
+        const savedCategories = Storage.getAllCategories();
+        //find this category if existed:
+        const existedCategory = savedCategories.find(c => c.id === categoryToSave.id);
 
+        if (existedCategory) {
+            //edit existed category
+            existedCategory.title = categoryToSave.title;
+            existedCategory.description = categoryToSave.description;
+        } else {
+            //create new category
+            categoryToSave.id = new Date().getTime();
+            categoryToSave.createdAt = new Date().toISOString();
+            savedCategories.push(categoryToSave);
+        }
+
+        localStorage.setItem("categories", JSON.stringify(savedCategories));
+    }
 
 }
