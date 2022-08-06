@@ -35,7 +35,8 @@
                     <div class="flex items-center justify-between gap-x-4">
                         <button
                             class="flex-1 border border-slate-500 text-slate-500 rounded-xl py-2 font-bold">Cancel</button>
-                        <button class="flex-1 bg-slate-300 text-slate-600 rounded-xl py-2 font-bold">Add New
+                        <button id="add-new-category"
+                            class="flex-1 bg-slate-300 text-slate-600 rounded-xl py-2 font-bold">Add New
                             Category</button>
                     </div>
                 </form>
@@ -60,10 +61,6 @@
                         <label for="product-category" class="block mb-1 text-slate-400">Category:</label>
                         <select name="product-category" id="product-category"
                             class="bg-transparent border border-slate-500 rounded-xl text-slate-400 w-full">
-                            <option disabled selected hidden class="bg-slate-500 text-slate-300">select a category
-                            </option>
-                            <option value="backend" class="bg-slate-500 text-slate-300">backend</option>
-                            <option value="frontend" class="bg-slate-500 text-slate-300">frontend</option>
                         </select>
 
                     </div>
@@ -91,6 +88,8 @@
 
         </div>
     </div>
+
+    <script src="/src/js/app.js" type="module"></script>
 </body>
 
 </html>
