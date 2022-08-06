@@ -36,7 +36,7 @@ const categories = [
 
 
 
-class Storage {
+export default class Storage {
 
     //get All Categories in localStorage
     static getAllCategories() {
