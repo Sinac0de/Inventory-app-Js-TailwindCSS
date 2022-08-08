@@ -8,5 +8,5 @@ document.addEventListener("DOMContentLoaded", () => {
     //create categories options
     CategoryView.createCategoriesList();
     //create products options
-    ProductView.createProductsList();
+    ProductView.createProductsList(ProductView.products);
 });

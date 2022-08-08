@@ -1,9 +1,11 @@
 import Storage from "./Storage.js";
 const addNewProduct = document.getElementById("add-new-product");
+const searchInput = document.getElementById("search-input");
 class ProductView {
 
     constructor() {
         addNewProduct.addEventListener("click", e => this.addProduct(e));
+        searchInput.addEventListener("input", e => this.searchProducts(e));
         this.products = [];
     }
 
@@ -22,30 +24,43 @@ class ProductView {
         Storage.saveProduct({ title, quantity, category });
         //refresh products array
         this.products = Storage.getAllProducts();
-        this.createProductsList();
+        this.createProductsList(this.products);
     }
 
-    createProductsList() {
+    createProductsList(products) {
         let result = '';
-        this.products.forEach(product => {
+        products.forEach(product => {
             const productCategory = Storage.getAllCategories().find(c => c.id == product.category);
+            //date options
+            const options = {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            };
+            //products list content
             result += ` 
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center mb-4">
                 <span class="text-slate-400 ">${product.title}</span>
                 <div class="flex items-center gap-x-3">
-                <span class="text-slate-400">${new Date().toLocaleString("fa-IR", { dateStyle: "short" })}</span>
-                <span
-                        class="block text-slate-400 border border-slate-400 py-0.5 px-3 rounded-2xl text-sm">${productCategory.title}</span>
-                        <span
-                        class="flex items-center justify-center w-7 h-7 bg-slate-500 rounded-full border border-2 border-slate-400 text-slate-300">${product.quantity}</span>
-                        <button class="text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl">delete</button>
-                        </div>
-                        </div>`
+                    <span class="text-slate-400">${new Date().toLocaleString("fa-IR", options)}</span>
+                    <span class="block text-slate-400 border border-slate-400 py-0.5 px-3 rounded-2xl text-sm">${productCategory.title}</span>
+                    <span class="flex items-center justify-center w-7 h-7 bg-slate-500 rounded-full border border-2 border-slate-400 text-slate-300">${product.quantity}</span>
+                    <button class="text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl" data-id="${product.id}">delete</button>
+                </div>
+            </div>`
         });
 
         const productsDOM = document.getElementById("products-list");
         productsDOM.innerHTML = result;
 
+    }
+
+    searchProducts(e) {
+        const value = e.target.value.trim().toLowerCase();
+        const filteredProducts = this.products.filter(p => p.title.toLowerCase().includes(value));
+        //replace filtered products on DOM
+        this.createProductsList(filteredProducts);
     }
 
 }
