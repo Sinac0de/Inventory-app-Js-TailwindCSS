@@ -3,10 +3,16 @@ import Storage from "./Storage.js";
 const categoryTitle = document.querySelector("#category-title");
 const categoryDescription = document.querySelector("#category-description");
 const addNewCategoryBtn = document.querySelector("#add-new-category");
+const toggleAddCategoryBtn = document.querySelector("#toggle-add-category")
+const addCategoryWrapper = document.getElementById("add-category-wrapper");
+const cancelAddCategoryBtn = document.getElementById("cancel-add-category");
+
 class CategoryView {
 
     constructor() {
         addNewCategoryBtn.addEventListener("click", (e) => this.addNewCategory(e));
+        toggleAddCategoryBtn.addEventListener("click", (e) => this.toggleAddCategory(e));
+        cancelAddCategoryBtn.addEventListener("click", (e) => this.cancelAddCategory(e));
         this.categories = [];
     }
 
@@ -20,6 +26,10 @@ class CategoryView {
         this.categories = Storage.getAllCategories();
         //update DOM : update select option in categories
         this.createCategoriesList();
+        addCategoryWrapper.classList.add("hidden");
+        toggleAddCategoryBtn.classList.remove("hidden");
+        //clear typed values
+        this.clearInputValues();
     }
 
     setApp() {
@@ -34,6 +44,26 @@ class CategoryView {
         //add new category list to select DOM
         const categoryDOM = document.getElementById("product-category");
         categoryDOM.innerHTML = result;
+    }
+
+    toggleAddCategory(e) {
+        e.preventDefault();
+        addCategoryWrapper.classList.remove("hidden");
+        toggleAddCategoryBtn.classList.add("hidden");
+
+    }
+
+    cancelAddCategory(e) {
+        e.preventDefault();
+        addCategoryWrapper.classList.add("hidden");
+        toggleAddCategoryBtn.classList.remove("hidden");
+        //clear typed values
+        this.clearInputValues();
+    }
+
+    clearInputValues() {
+        document.querySelector("#category-title").value = "";
+        document.querySelector("#category-description").value = "";
     }
 
 }
