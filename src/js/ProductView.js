@@ -2,6 +2,8 @@ import Storage from "./Storage.js";
 const addNewProduct = document.getElementById("add-new-product");
 const searchInput = document.getElementById("search-input");
 const selectedSort = document.getElementById("sort-products");
+//total products quantity:
+const totalquantity = document.getElementById("total-quantity");
 class ProductView {
 
     constructor() {
@@ -9,6 +11,7 @@ class ProductView {
         searchInput.addEventListener("input", e => this.searchProducts(e));
         selectedSort.addEventListener("change", e => this.sortProducts(e));
         this.products = [];
+        this.productsTotalQuantity();
     }
 
     setApp() {
@@ -50,13 +53,19 @@ class ProductView {
                     <span class="text-slate-400">${new Date().toLocaleString("fa-IR", options)}</span>
                     <span class="block text-slate-400 border border-slate-400 py-0.5 px-3 rounded-2xl text-sm">${productCategory.title}</span>
                     <span class="flex items-center justify-center w-7 h-7 bg-slate-500 rounded-full border border-2 border-slate-400 text-slate-300">${product.quantity}</span>
-                    <button class="text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl" data-id="${product.id}">delete</button>
+                    <button class="delete-btn text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl" data-product-id="${product.id}">delete</button>
                 </div>
             </div>`
         });
 
         const productsDOM = document.getElementById("products-list");
         productsDOM.innerHTML = result;
+
+        const deleteBtns = [...document.querySelectorAll(".delete-btn")];
+
+        deleteBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => this.deleteProduct(e));
+        });
 
     }
 
@@ -72,6 +81,22 @@ class ProductView {
         this.products = Storage.getAllProducts(value);
         this.createProductsList(this.products);
     }
+
+    deleteProduct(e) {
+        const productId = e.target.dataset.productId;
+        Storage.deleteProduct(productId);
+        this.products = Storage.getAllProducts();
+        this.createProductsList(this.products);
+    }
+
+    productsTotalQuantity() {
+        const products = Storage.getAllProducts();
+        const sum = products.reduce((prev, curr) => {
+            return prev + parseInt(curr.quantity);
+        }, 0);
+        totalquantity.innerHTML = sum;
+    }
+
 
 }
 
