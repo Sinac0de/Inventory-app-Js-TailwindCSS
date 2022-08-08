@@ -70,11 +70,15 @@ export default class Storage {
     }
 
     //get All Products in localStorage
-    static getAllProducts() {
+    static getAllProducts(sort = "newest") {
         const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
         //sort products in decending order
         return savedProducts.sort((a, b) => {
-            return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
+            if (sort === "newest") {
+                return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
+            } else if (sort === "oldest") {
+                return new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1;
+            }
         });
     }
 

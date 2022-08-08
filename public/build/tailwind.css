@@ -741,6 +741,9 @@ select {
 .flex {
   display: flex;
 }
+.hidden {
+  display: none;
+}
 .h-12 {
   height: 3rem;
 }
@@ -796,6 +799,9 @@ select {
 }
 .overflow-x-auto {
   overflow-x: auto;
+}
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 .rounded-full {
   border-radius: 9999px;
@@ -940,4 +946,15 @@ select {
 .text-slate-100 {
   --tw-text-opacity: 1;
   color: rgb(241 245 249 / var(--tw-text-opacity));
+}
+@media (min-width: 768px) {
+
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
