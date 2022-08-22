@@ -1,42 +1,3 @@
-
-const products = [
-    {
-        id: 1,
-        title: "React.js",
-        category: "frontend",
-        createdAt: '2022-09-04T04:04:35.112Z'
-    },
-    {
-        id: 2,
-        title: "Node.js",
-        category: "backend",
-        createdAt: '2022-10-04T04:04:35.112Z'
-    },
-    {
-        id: 3,
-        title: "Vue.js",
-        category: "frontend",
-        createdAt: '2022-11-04T04:04:35.112Z'
-    },
-];
-
-const categories = [
-    {
-        id: 1,
-        title: "frontend",
-        description: "frontend of Application",
-        createdAt: '2022-08-04T04:04:35.112Z'
-    },
-    {
-        id: 2,
-        title: "backend",
-        description: "backend of Application",
-        createdAt: '2022-10-04T04:04:35.112Z'
-    },
-];
-
-
-
 export default class Storage {
 
     //get All Categories in localStorage
@@ -108,6 +69,10 @@ export default class Storage {
         const savedProducts = Storage.getAllProducts();
         const filteredProducts = savedProducts.filter(p => p.id !== parseInt(id));
         localStorage.setItem('products', JSON.stringify(filteredProducts));
+    }
+
+    static editProduct(id, title, quantity, category) {
+        //TODO باید یه مودال تو یه کلاس دیگه باشه که مقادیر رو بگیره بعد با این توی لوکال استوریج ذخیره میکنیم
     }
 
 }

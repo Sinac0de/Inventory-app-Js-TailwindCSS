@@ -4,6 +4,9 @@ const searchInput = document.getElementById("search-input");
 const selectedSort = document.getElementById("sort-products");
 //total products quantity:
 const totalquantity = document.getElementById("total-quantity");
+//TODO یه مودال بساز که زمانی که روی دکمه ادیت زدن باز بشه و تایتل و کوانتیتی و کتگوری رو بگیره و دکمه کنسل و ادیت هم داشته باشه و بعد توی استوریج ذخیره بشه
+
+
 class ProductView {
 
     constructor() {
@@ -24,7 +27,10 @@ class ProductView {
         const quantity = document.getElementById("product-quantity").value;
         const category = document.getElementById("product-category").value;
         //check if an input value is empty
-        if (!title || !quantity || !category) return;
+        if (!title || !quantity || !category) {
+            alert("محصول افزوده نشد!\n لطفا همه مقادیر خواسته شده را وارد کنید.");
+            return;
+        }
         //save product info in local storage
         Storage.saveProduct({ title, quantity, category });
         //refresh products array
@@ -53,7 +59,9 @@ class ProductView {
                     <span class="text-slate-400">${new Date().toLocaleString("fa-IR", options)}</span>
                     <span class="block text-slate-400 border border-slate-400 py-0.5 px-3 rounded-2xl text-sm">${productCategory.title}</span>
                     <span class="flex items-center justify-center w-7 h-7 bg-slate-500 rounded-full border border-2 border-slate-400 text-slate-300">${product.quantity}</span>
+                   
                     <button class="delete-btn text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl" data-product-id="${product.id}">delete</button>
+                    <button class="text-slate-300 text-xl" data-product-id="${product.id}"><i class="fa-solid fa-pen-to-square"></i></button>
                 </div>
             </div>`
         });

@@ -21,7 +21,10 @@ class CategoryView {
         e.preventDefault();//prevent refreshing the page
         const title = categoryTitle.value;
         const description = categoryDescription.value;
-        if (!title || !description) return;//if the input values are empty
+        if (!title || !description) {//if the input values are empty
+            alert("دسته بندی مورد نظر افزوده نشد!\n لطفا همه مقادیر خواسته شده را وارد کنید.");
+            return;
+        }
         Storage.saveCategory({ title, description });
         this.categories = Storage.getAllCategories();
         //update DOM : update select option in categories
