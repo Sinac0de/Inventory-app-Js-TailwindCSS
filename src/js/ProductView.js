@@ -51,12 +51,13 @@ class ProductView {
                 month: "long",
                 day: "numeric"
             };
+            console.log(productCategory);
             //products list content
             result += ` 
-            <div class="flex justify-between items-center mb-4">
+            <div class="flex justify-between items-center mb-4 overflow-auto">
                 <span class="text-slate-400 ">${product.title}</span>
                 <div class="flex items-center gap-x-3">
-                    <span class="text-slate-400">${new Date().toLocaleString("fa-IR", options)}</span>
+                    <span class="whitespace-nowrap overflow-hidden text-slate-400 text-ellipsis inline-block border border-slate-500">${new Date().toLocaleString("fa-IR", options)}</span>
                     <span class="block text-slate-400 border border-slate-400 py-0.5 px-3 rounded-2xl text-sm">${productCategory.title}</span>
                     <span class="flex items-center justify-center w-7 h-7 bg-slate-500 rounded-full border border-2 border-slate-400 text-slate-300">${product.quantity}</span>
                    
