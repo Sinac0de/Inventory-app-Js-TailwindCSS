@@ -57,7 +57,7 @@ class ProductView {
             <div class="flex justify-between items-center mb-4 overflow-auto">
                 <span class="text-slate-400 ">${product.title}</span>
                 <div class="flex items-center gap-x-3">
-                    <span class="whitespace-nowrap overflow-hidden text-slate-400 text-ellipsis inline-block border border-slate-500">${new Date().toLocaleString(
+                    <span class="whitespace-nowrap overflow-hidden text-slate-400 text-ellipsis inline-block border-slate-500 px-4">${new Date().toLocaleString(
                       "fa-IR",
                       options
                     )}</span>
@@ -71,11 +71,13 @@ class ProductView {
                     <button class="delete-btn text-red-300 border border-red-300 py-0.5 px-2 rounded-2xl" data-product-id="${
                       product.id
                     }">delete</button>
-                    <button class="text-slate-300 text-xl" data-product-id="${
-                      product.id
-                    }"><i class="fa-solid fa-pen-to-square"></i></button>
-                </div>
-            </div>`;
+                    </div>
+                    </div>`;
+      /*--- edit ---*/
+
+      // <button class="text-slate-300 text-xl" data-product-id="${
+      //   product.id
+      // }"><i class="fa-solid fa-pen-to-square"></i></button>
     });
 
     const productsDOM = document.getElementById("products-list");
